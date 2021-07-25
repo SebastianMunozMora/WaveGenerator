@@ -10,11 +10,11 @@
 using namespace std;
 
 int main () {
-	SineWave mySine(0.5, 200);
+	SineWave mySine(0.5, 5000);
 	vector <float> sineWave = mySine.getWave();
 	const int currentSampleRate = mySine.getSamplingRate();
 	const int currentDuration = mySine.getDuration();
-	FileManager fs("loFreq", currentSampleRate, 1, sineWave, 16);
+	FileManager fs("hiF", currentSampleRate, 1, sineWave, 16);
 
 	cout << "mySine: " << currentSampleRate << endl;
 	cout << "mySine: " << currentDuration << endl;

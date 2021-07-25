@@ -32,11 +32,11 @@ class FileManager {
         ofstream file;
         file.open(fileName+".wav", ios::binary);
         if(file.is_open()) {
-            file << "RIFF";
-            file << "----";
-            file << "WAVE";
+            file.write("RIFF", 4);
+            file.write("****", 4);
+            file.write("WAVE", 4);
 
-            file << "fmt ";
+            file.write("fmt ", 4);
             writeByte(file, 16, 4);
             writeByte(file, 1, 2);
             writeByte(file, numChannels, 2);
@@ -44,8 +44,8 @@ class FileManager {
             writeByte(file, byteRate, 4);
             writeByte(file, blockAlign, 2);
             writeByte(file, bitsPerSample, 2);
-            file << "data";
-            file << "----";
+            file.write("data", 4);
+            file.write("****", 4);
             writeAudioData(file, data);
             int end = file.tellp();
             file.seekp(40);
